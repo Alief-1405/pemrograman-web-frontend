@@ -1,0 +1,91 @@
+.form-page-header {
+  margin-bottom: 2rem;
+}
+
+.form-page-header .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #888;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  transition: color 0.2s;
+}
+
+.form-page-header .back-link:hover {
+  color: #e53935;
+}
+
+.form-page-header h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.form-card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 700px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.file-input-wrapper {
+  position: relative;
+}
+
+.file-input-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: #111;
+  border: 1px dashed #3a3a3a;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #666;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.file-input-label:hover {
+  border-color: #e53935;
+  color: #e53935;
+}
+
+.file-input-label input[type="file"] {
+  display: none;
+}
+
+.file-selected {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #4caf50;
+  padding: 0.4rem 0.75rem;
+  background: rgba(76, 175, 80, 0.08);
+  border-radius: 6px;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-card {
+    padding: 1.25rem;
+  }
+}

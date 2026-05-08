@@ -1,0 +1,150 @@
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dashboard-header h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.search-bar {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+  transition: border-color 0.2s;
+}
+
+.search-bar:focus-within {
+  border-color: #e53935;
+}
+
+.search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.search-bar input::placeholder {
+  color: #555;
+}
+
+.search-bar button {
+  background: linear-gradient(135deg, #e53935, #c62828);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.search-bar button:hover {
+  background: linear-gradient(135deg, #ef5350, #e53935);
+}
+
+/* TABLE */
+.table-wrapper {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.movies-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.movies-table thead {
+  background: #111;
+}
+
+.movies-table th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.movies-table td {
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  color: #ccc;
+  border-bottom: 1px solid #1e1e1e;
+  vertical-align: middle;
+}
+
+.movies-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.movies-table tbody tr:hover td {
+  background: #1e1e1e;
+}
+
+.movie-title-cell {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.genre-pill {
+  display: inline-block;
+  background: rgba(229, 57, 53, 0.1);
+  color: #ef5350;
+  border: 1px solid rgba(229, 57, 53, 0.2);
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #555;
+}
+
+.empty-state p {
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .movies-table {
+    overflow-x: auto;
+  }
+
+  .movies-table table {
+    min-width: 600px;
+  }
+}
