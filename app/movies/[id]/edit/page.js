@@ -27,15 +27,20 @@ function EditMovie() {
     const fetchMovie = async () => {
       try {
         const data = await api.getMovie(id);
-        const movie = data.data || data;
-        setFormData({
-          judul: movie.judul || '',
-          sutradara: movie.sutradara || '',
-          tahun: movie.tahun || new Date().getFullYear(),
-          genre: movie.genre || '',
-          deskripsi: movie.deskripsi || '',
-          durasi: movie.durasi || '',
-        });
+        // Cek status response, jangan pakai fallback || data
+        if (data.status === 200) {
+          const movie = data.data;
+          setFormData({
+            judul: movie.judul || '',
+            sutradara: movie.sutradara || '',
+            tahun: movie.tahun || new Date().getFullYear(),
+            genre: movie.genre || '',
+            deskripsi: movie.deskripsi || '',
+            durasi: movie.durasi || '',
+          });
+        } else {
+          setError('Film tidak ditemukan.');
+        }
       } catch (err) {
         setError('Gagal memuat data film');
       } finally {

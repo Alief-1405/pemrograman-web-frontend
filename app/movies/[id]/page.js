@@ -6,12 +6,13 @@ import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import './page.css';
 
-const API_BASE = 'http://localhost:4000';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
 export default function MovieDetail({ params }) {
   const { id } = params;
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
@@ -23,9 +24,15 @@ export default function MovieDetail({ params }) {
       try {
         setLoading(true);
         const data = await api.getMovie(id);
-        setMovie(data.data || data);
-      } catch (error) {
-        console.error('Error fetching movie:', error);
+        // Cek status response, jangan pakai fallback || data
+        if (data.status === 200) {
+          setMovie(data.data);
+        } else {
+          setError('Film tidak ditemukan.');
+        }
+      } catch (err) {
+        console.error('Error fetching movie:', err);
+        setError('Gagal memuat data film.');
       } finally {
         setLoading(false);
       }
@@ -36,9 +43,15 @@ export default function MovieDetail({ params }) {
 
   const handleDelete = async () => {
     if (!confirm('Hapus film ini?')) return;
-    const data = await api.deleteMovie(id);
-    if (data.status === 200) {
-      router.push('/dashboard');
+    try {
+      const data = await api.deleteMovie(id);
+      if (data.status === 200) {
+        router.push('/dashboard');
+      } else {
+        alert('Gagal menghapus film.');
+      }
+    } catch (err) {
+      alert('Terjadi kesalahan saat menghapus.');
     }
   };
 
@@ -53,10 +66,11 @@ export default function MovieDetail({ params }) {
     );
   }
 
-  if (!movie) {
+  if (error || !movie) {
     return (
       <main className="container main">
-        <div className="alert alert-error">Film tidak ditemukan.</div>
+        <Link href="/" className="back-link">← Kembali</Link>
+        <div className="alert alert-error">{error || 'Film tidak ditemukan.'}</div>
       </main>
     );
   }
